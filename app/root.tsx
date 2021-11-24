@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import type { LinksFunction } from 'remix';
 import {
   Link,
   Links,
@@ -8,13 +9,11 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-  useLocation
-} from "remix";
-import type { LinksFunction } from "remix";
-
-import deleteMeRemixStyles from "~/styles/demos/remix.css";
-import globalStylesUrl from "~/styles/global.css";
-import darkStylesUrl from "~/styles/dark.css";
+  useLocation,
+} from 'remix';
+import darkStylesUrl from '~/styles/dark.css';
+import deleteMeRemixStyles from '~/styles/demos/remix.css';
+import globalStylesUrl from '~/styles/global.css';
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -26,13 +25,13 @@ import darkStylesUrl from "~/styles/dark.css";
  */
 export let links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: globalStylesUrl },
+    { rel: 'stylesheet', href: globalStylesUrl },
     {
-      rel: "stylesheet",
+      rel: 'stylesheet',
       href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)"
+      media: '(prefers-color-scheme: dark)',
     },
-    { rel: "stylesheet", href: deleteMeRemixStyles }
+    { rel: 'stylesheet', href: deleteMeRemixStyles },
   ];
 };
 
@@ -53,7 +52,7 @@ export default function App() {
 
 function Document({
   children,
-  title
+  title,
 }: {
   children: React.ReactNode;
   title?: string;
@@ -72,7 +71,7 @@ function Document({
         <RouteChangeAnnouncement />
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
   );
@@ -90,6 +89,12 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
             <ul>
               <li>
                 <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/posts">Posts</Link>
+              </li>
+              <li>
+                <Link to="/admin">Admin</Link>
               </li>
               <li>
                 <a href="https://remix.run/docs">Remix Docs</a>
@@ -167,7 +172,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-function RemixLogo(props: React.ComponentPropsWithoutRef<"svg">) {
+function RemixLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       viewBox="0 0 659 165"
@@ -196,7 +201,7 @@ function RemixLogo(props: React.ComponentPropsWithoutRef<"svg">) {
  */
 const RouteChangeAnnouncement = React.memo(() => {
   let [hydrated, setHydrated] = React.useState(false);
-  let [innerHtml, setInnerHtml] = React.useState("");
+  let [innerHtml, setInnerHtml] = React.useState('');
   let location = useLocation();
 
   React.useEffect(() => {
@@ -212,7 +217,7 @@ const RouteChangeAnnouncement = React.memo(() => {
       return;
     }
 
-    let pageTitle = location.pathname === "/" ? "Home page" : document.title;
+    let pageTitle = location.pathname === '/' ? 'Home page' : document.title;
     setInnerHtml(`Navigated to ${pageTitle}`);
   }, [location.pathname]);
 
@@ -228,17 +233,17 @@ const RouteChangeAnnouncement = React.memo(() => {
       aria-atomic
       id="route-change-region"
       style={{
-        border: "0",
-        clipPath: "inset(100%)",
-        clip: "rect(0 0 0 0)",
-        height: "1px",
-        margin: "-1px",
-        overflow: "hidden",
-        padding: "0",
-        position: "absolute",
-        width: "1px",
-        whiteSpace: "nowrap",
-        wordWrap: "normal"
+        border: '0',
+        clipPath: 'inset(100%)',
+        clip: 'rect(0 0 0 0)',
+        height: '1px',
+        margin: '-1px',
+        overflow: 'hidden',
+        padding: '0',
+        position: 'absolute',
+        width: '1px',
+        whiteSpace: 'nowrap',
+        wordWrap: 'normal',
       }}
     >
       {innerHtml}
