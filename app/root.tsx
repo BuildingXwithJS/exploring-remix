@@ -99,6 +99,9 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
               <li>
                 <Link to="/d3">D3 Test</Link>
               </li>
+              <li>
+                <Link to="/bxjs">BxJS Posts</Link>
+              </li>
             </ul>
           </nav>
         </div>
